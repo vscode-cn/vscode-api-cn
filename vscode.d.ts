@@ -13816,22 +13816,20 @@ export namespace authentication {
 	export function getSession(providerId: string, scopes: readonly string[], options?: AuthenticationGetSessionOptions): Thenable<AuthenticationSession | undefined>;
 
 	/**
-	 * An {@link Event} which fires when the authentication sessions of an authentication provider have
-	 * been added, removed, or changed.
+	 * 当已认证身份的提供者的 session 被添加、删除、或者改变，将触发事件 {@link Event}
 	 */
 	export const onDidChangeSessions: Event<AuthenticationSessionsChangeEvent>;
 
 	/**
-	 * Register an authentication provider.
+	 * 注册成为一个已认证身份的提供者
 	 *
-	 * There can only be one provider per id and an error is being thrown when an id
-	 * has already been used by another provider. Ids are case-sensitive.
+	 * 每个id只能有一个提供者，当一个id已经被另一个提供者使用时，就会抛出错误。Ids是区分大小写的。
 	 *
-	 * @param id The unique identifier of the provider.
-	 * @param label The human-readable name of the provider.
-	 * @param provider The authentication provider provider.
-	 * @params options Additional options for the provider.
-	 * @return A {@link Disposable} that unregisters this provider when being disposed.
+	 * @param id 提供者的唯一 id
+	 * @param label 提供者的可读名称
+	 * @param provider 已认证身份的提供者
+	 * @params options 为提供者提供其他选项
+	 * @return 当一个 {@link Disposable} 被释放时，注销该提供商
 	 */
 	export function registerAuthenticationProvider(id: string, label: string, provider: AuthenticationProvider, options?: AuthenticationProviderOptions): Disposable;
 }
