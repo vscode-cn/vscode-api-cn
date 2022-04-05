@@ -13668,73 +13668,74 @@ declare module vscode {
 
 		/**
 		 * Whether the existing user session preference should be cleared.
+		 * 是否应该清除当前存在的用户会话偏好。
 		 *
-		 * For authentication providers that support being signed into multiple accounts at once, the user will be
-		 * prompted to select an account to use when {@link authentication.getSession getSession} is called. This preference
-		 * is remembered until {@link authentication.getSession getSession} is called with this flag.
+		 * 对于支持一次同时登录多个账户的认证供应商（authentication providers），当{@link authentication.getSession getSession}被调用时，
+		 * 用户将被提示选择其中一个账户来登录。
+		 * 这个选择偏好会被记住，直到{@link authentication.getSession getSession}在带有此标志时被调用。
 		 *
-		 * Defaults to false.
+		 * 默认值为：false。
 		 */
 		clearSessionPreference?: boolean;
 	}
 
   /**
-   * Basic information about an {@link AuthenticationProvider}
+	 * 关于认证供应商{@link AuthenticationProvider}的基本信息。
    */
   export interface AuthenticationProviderInformation {
-    /**
-     * The unique identifier of the authentication provider.
-     */
-    readonly id: string;
+		/**
+		 * 认证供应商的唯一标识符。
+		 */
+		readonly id: string;
 
-    /**
-     * The human-readable name of the authentication provider.
-     */
-    readonly label: string;
-  }
+		/**
+		 * 认证供应商的可读性命名。
+		 */
+		readonly label: string;
+	}
 
   /**
-   * An {@link Event} which fires when an {@link AuthenticationSession} is added, removed, or changed.
+	 * 当一个{@link AuthenticationSession}被添加、删除、修改时会触发的事件。
    */
   export interface AuthenticationSessionsChangeEvent {
-    /**
-     * The {@link AuthenticationProvider} that has had its sessions change.
-     */
-    readonly provider: AuthenticationProviderInformation;
-  }
+		/**
+		 * 会话发生改变的{@link AuthenticationProvider}。
+		 */
+		readonly provider: AuthenticationProviderInformation;
+	}
 
   /**
-   * Options for creating an {@link AuthenticationProvider}.
+	 * 创建一个认证供应商{@link AuthenticationProvider}时的选项。
    */
   export interface AuthenticationProviderOptions {
-    /**
-     * Whether it is possible to be signed into multiple accounts at once with this provider.
-     * If not specified, will default to false.
-    */
-    readonly supportsMultipleAccounts?: boolean;
-  }
+		/**
+		 * 是否可以通过该认证供应商同时登录多个账户。如果没有指定，此值将默认为false。
+		 */
+		readonly supportsMultipleAccounts?: boolean;
+	}
 
   /**
-  * An {@link Event} which fires when an {@link AuthenticationSession} is added, removed, or changed.
+	* 当一个{@link AuthenticationSession}被添加、删除、修改时会触发的事件。
   */
   export interface AuthenticationProviderAuthenticationSessionsChangeEvent {
-    /**
-     * The {@link AuthenticationSession}s of the {@link AuthenticationProvider} that have been added.
-    */
-    readonly added?: readonly AuthenticationSession[];
+		/**
+		 * 当{@link AuthenticationProvider}的一个或多个{@link AuthenticationSession}被添加。
+		 */
+		readonly added?: readonly AuthenticationSession[];
 
-    /**
-     * The {@link AuthenticationSession}s of the {@link AuthenticationProvider} that have been removed.
-     */
-    readonly removed?: readonly AuthenticationSession[];
+		/**
+		 * The {@link AuthenticationSession}s of the {@link AuthenticationProvider} that have been removed.
+		 * 当{@link AuthenticationProvider}的一个或多个{@link AuthenticationSession}被移除。
+		 */
+		readonly removed?: readonly AuthenticationSession[];
 
-    /**
-     * The {@link AuthenticationSession}s of the {@link AuthenticationProvider} that have been changed.
-     * A session changes when its data excluding the id are updated. An example of this is a session refresh that results in a new
-     * access token being set for the session.
-     */
-    readonly changed?: readonly AuthenticationSession[];
-  }
+		/**
+		 * 当{@link AuthenticationProvider}的{@link AuthenticationSession}被修改。
+		 * 当一个会话的数据（不包括它的id）被更新时，它就会发生变化。
+		 * 这方面的一个例子是会话刷新，导致设置一个新的访问令牌给此会话。
+		 */
+		readonly changed?: readonly AuthenticationSession[];
+	}
 
   /**
    * A provider for performing authentication to a service.
