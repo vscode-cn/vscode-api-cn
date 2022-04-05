@@ -13607,42 +13607,41 @@ declare module vscode {
   //#endregion
 
   /**
-   * Represents a session of a currently logged in user.
+	 * 表示当前登录用户的一个会话（后续用session表示该会话）。
    */
   export interface AuthenticationSession {
-    /**
-     * The identifier of the authentication session.
-     */
-    readonly id: string;
+		/**
+		 * 验证session的标识符。
+		 */
+		readonly id: string;
 
-    /**
-     * The access token.
-     */
-    readonly accessToken: string;
+		/**
+		 * 访问令牌——access token。
+		 */
+		readonly accessToken: string;
 
-    /**
-     * The account associated with the session.
-     */
-    readonly account: AuthenticationSessionAccountInformation;
+		/**
+		 * 与该session相关的账户。
+		 */
+		readonly account: AuthenticationSessionAccountInformation;
 
-    /**
-     * The permissions granted by the session's access token. Available scopes
-     * are defined by the {@link AuthenticationProvider}.
-     */
-    readonly scopes: readonly string[];
-  }
+		/**
+		 * 由session的访问令牌生成的权限。可以访问的作用域由{@link AuthenticationProvider}定义。
+		 */
+		readonly scopes: readonly string[];
+	}
 
   /**
-   * The information of an account associated with an {@link AuthenticationSession}.
+	 * 与{@link AuthenticationSession}相关的账户的信息。
    */
   export interface AuthenticationSessionAccountInformation {
     /**
-     * The unique identifier of the account.
+		 * 该账户的唯一标识符。
      */
     readonly id: string;
 
     /**
-     * The human-readable name of the account.
+		 * 该账户的可读性命名。
      */
     readonly label: string;
   }
@@ -13650,33 +13649,34 @@ declare module vscode {
 
   /**
    * Options to be used when getting an {@link AuthenticationSession} from an {@link AuthenticationProvider}.
+	 * 通过{@link AuthenticationProvider}生成一个{@link AuthenticationSession}时用到的操作选项。
    */
   export interface AuthenticationGetSessionOptions {
-    /**
-     * Whether login should be performed if there is no matching session.
-     *
-     * If true, a modal dialog will be shown asking the user to sign in. If false, a numbered badge will be shown
-     * on the accounts activity bar icon. An entry for the extension will be added under the menu to sign in. This
-     * allows quietly prompting the user to sign in.
-     *
-     * If there is a matching session but the extension has not been granted access to it, setting this to true
-     * will also result in an immediate modal dialog, and false will add a numbered badge to the accounts icon.
-     *
-     * Defaults to false.
-     */
-    createIfNone?: boolean;
+		/**
+		 * 如果没有匹配的会话，是否应该显示登录。
+		 *
+		 * 如果设置为true，那么一个拟态对话框会出现，要求用户进行登录。
+		 * 如果设置为false，那么一个编有序号的徽章会出现在账户活动栏图标上。此扩展的入口会被添加到菜单的下面用做登录。这样可以静默提示用户进行登录。
+		 * 如果是真的，将显示一个模态对话框，要求用户登录。如果是假的，一个编号的徽章将显示在账户活动栏图标上。分机的条目将被添加到登录的菜单下。这 允许悄悄地提示用户登录。
+		 *
+		 * 如果有一个匹配的会话，但该扩展没有被授予访问权限，将此选项设置为“true”，也会导致出现一个即时的对话框提示登陆，
+		 * 而设置为“false”的话，将在账户图标上添加一个带编号的徽章。
+		 *
+		 * 默认值为：false。
+		 */
+		createIfNone?: boolean;
 
-    /**
-     * Whether the existing user session preference should be cleared.
-     *
-     * For authentication providers that support being signed into multiple accounts at once, the user will be
-     * prompted to select an account to use when {@link authentication.getSession getSession} is called. This preference
-     * is remembered until {@link authentication.getSession getSession} is called with this flag.
-     *
-     * Defaults to false.
-     */
-    clearSessionPreference?: boolean;
-  }
+		/**
+		 * Whether the existing user session preference should be cleared.
+		 *
+		 * For authentication providers that support being signed into multiple accounts at once, the user will be
+		 * prompted to select an account to use when {@link authentication.getSession getSession} is called. This preference
+		 * is remembered until {@link authentication.getSession getSession} is called with this flag.
+		 *
+		 * Defaults to false.
+		 */
+		clearSessionPreference?: boolean;
+	}
 
   /**
    * Basic information about an {@link AuthenticationProvider}
